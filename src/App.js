@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import instance from './api/axios';
+import serverFetch from './api/axios';
 
 import './App.css';
 
@@ -8,8 +8,8 @@ const App = () => {
   const [response, setResponse] = useState('');
 
   const testConnection = async () => {
-    const response = await instance.get('test/connection');
-    console.log(response)
+    const response = await serverFetch.get('test/connection');
+    setResponse(response.data.content)
   }
 
   useEffect( () =>{
