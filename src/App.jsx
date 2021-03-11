@@ -5,21 +5,24 @@ import serverFetch from './api/axios';
 import './App.css';
 
 const App = () => {
-  const [response, setResponse] = useState('');
+  const [content, setContent] = useState('');
 
   const testConnection = async () => {
     const response = await serverFetch.get('test/connection');
-    setResponse(response.data.content)
-  }
+    setContent(response.data.content);
+  };
 
-  useEffect( () =>{
+  useEffect(() => {
     testConnection();
-  },[])
+  }, []);
 
   return (
     <div className="App">
-     <h1> Soundtrace - Web </h1>
-     <p>{response}</p>
+      <h1>
+        Soundtrace - Web
+
+      </h1>
+      <p>{content}</p>
     </div>
   );
 };
