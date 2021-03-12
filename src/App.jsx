@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import serverFetch from './api/axios';
 
 import './App.css';
 
-const App = () => {
-  const [content, setContent] = useState('');
+const cou_cou = 'coucou'
 
+const App = () => {
   const testConnection = async () => {
-    const response = await serverFetch.get('test/connection');
-    setContent(response.data.content);
+    const response = await serverFetch.post('/auth/sign_in', {
+      email: 'test1@gmail.com',
+      password: 'password',
+    });
+    console.log("erf")
+    return response;
   };
 
   useEffect(() => {
@@ -19,10 +23,11 @@ const App = () => {
   return (
     <div className="App">
       <h1>
-        Soundtrace - Web
 
+
+        Soundtrace - Web
       </h1>
-      <p>{content}</p>
+      <div>{cou_cou}</div>
     </div>
   );
 };
