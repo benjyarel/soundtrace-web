@@ -1,27 +1,25 @@
 import React, { useEffect } from 'react';
+import { RecoilRoot, useRecoilValue} from 'recoil';
 
 import serverFetch from './api/axios';
+import testAtom from './store/atoms/testAtom';
 
 import './App.css';
 
 const App = () => {
-  const testConnection = async () => {
-    const response = await serverFetch.post('/auth/sign_in', {
-      email: 'test1@gmail.com',
-      password: 'password',
-    });
-    return response;
-  };
-
-  useEffect(() => {
-    testConnection();
-  }, []);
 
   return (
-    <div className="App">
-      <h1> Soundtrace - Web </h1>
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <h1> Soundtrace - Web </h1>
+        <TestRecoil />
+      </div>
+    </RecoilRoot>
   );
 };
+
+const TestRecoil = () => {
+  return <p>{useRecoilValue(testAtom)}</p>;
+}
 
 export default App;
